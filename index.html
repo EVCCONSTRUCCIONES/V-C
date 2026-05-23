@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Villarreal & Castillo | Ingeniería Civil y Arquitectura</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg-primary:#0a0a0a;--bg-secondary:#111111;--bg-card:#161616;--bg-accent:#1a1a1a;
+  --gold:#c8a45a;--gold-light:#dfc07e;--gold-dark:#a8843a;
+  --text-primary:#e8e4dc;--text-secondary:#9a958d;--text-muted:#5c5852;--border:#2a2725;
+  --font-display:'Playfair Display',Georgia,serif;--font-body:'Raleway','Segoe UI',sans-serif;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--font-body);background:var(--bg-primary);color:var(--text-primary);overflow-x:hidden;line-height:1.7}
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:var(--bg-primary)}
+::-webkit-scrollbar-thumb{background:var(--gold-dark);border-radius:3px}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:1.2rem 3rem;display:flex;justify-content:space-between;align-items:center;backdrop-filter:blur(20px);background:rgba(10,10,10,.85);border-bottom:1px solid rgba(200,164,90,.1);transition:all .4s}
+nav.scrolled{padding:.8rem 3rem;background:rgba(10,10,10,.95)}
+.nav-logo{font-family:var(--font-display);font-size:1.3rem;color:var(--gold);letter-spacing:.05em;text-decoration:none;font-weight:600}
+.nav-logo span{color:var(--text-secondary);font-weight:400;font-size:.9rem;font-family:var(--font-body);letter-spacing:.15em;text-transform:uppercase;display:block;margin-top:2px}
+.nav-links{display:flex;gap:2.5rem;list-style:none}
+.nav-links a{color:var(--text-secondary);text-decoration:none;font-size:.8rem;letter-spacing:.2em;text-transform:uppercase;font-weight:500;transition:color .3s;position:relative}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:var(--gold);transition:width .3s}
+.nav-links a:hover{color:var(--gold)}
+.nav-links a:hover::after{width:100%}
+.nav-toggle{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:5px}
+.nav-toggle span{width:24px;height:1.5px;background:var(--gold);transition:all .3s}
+
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 20% 50%,rgba(200,164,90,.06),transparent),radial-gradient(ellipse 60% 50% at 80% 30%,rgba(200,164,90,.04),transparent);pointer-events:none}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(200,164,90,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(200,164,90,.03) 1px,transparent 1px);background-size:80px 80px;animation:gridShift 30s linear infinite}
+@keyframes gridShift{0%{transform:translate(0,0)}100%{transform:translate(80px,80px)}}
+.hero-content{text-align:center;z-index:2;padding:0 2rem;max-width:900px}
+.hero-badge{display:inline-block;font-size:.7rem;letter-spacing:.35em;text-transform:uppercase;color:var(--gold);border:1px solid rgba(200,164,90,.3);padding:.6rem 1.8rem;margin-bottom:2.5rem;font-weight:500;animation:fadeInUp .8s ease both}
+.hero h1{font-family:var(--font-display);font-size:clamp(2.5rem,6vw,4.5rem);font-weight:700;line-height:1.15;margin-bottom:1.5rem;animation:fadeInUp .8s ease .2s both}
+.hero h1 .accent{color:var(--gold)}
+.hero h1 .ampersand{color:var(--gold-dark);font-style:italic;font-weight:400}
+.hero-sub{color:var(--text-secondary);font-size:1.05rem;max-width:550px;margin:0 auto 3rem;font-weight:300;line-height:1.8;animation:fadeInUp .8s ease .4s both}
+.hero-cta{display:flex;gap:1.2rem;justify-content:center;flex-wrap:wrap;animation:fadeInUp .8s ease .6s both}
+.btn{padding:.9rem 2.5rem;font-family:var(--font-body);font-size:.8rem;letter-spacing:.2em;text-transform:uppercase;text-decoration:none;font-weight:600;cursor:pointer;transition:all .35s;border:none}
+.btn-gold{background:var(--gold);color:var(--bg-primary)}
+.btn-gold:hover{background:var(--gold-light);transform:translateY(-2px);box-shadow:0 8px 30px rgba(200,164,90,.25)}
+.btn-outline{background:transparent;color:var(--gold);border:1px solid rgba(200,164,90,.4)}
+.btn-outline:hover{border-color:var(--gold);background:rgba(200,164,90,.08)}
+.hero-scroll{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.8rem;animation:fadeInUp .8s ease .8s both}
+.hero-scroll span{font-size:.65rem;letter-spacing:.3em;text-transform:uppercase;color:var(--text-muted)}
+.scroll-line{width:1px;height:40px;background:linear-gradient(to bottom,var(--gold),transparent);animation:scrollPulse 2s ease infinite}
+@keyframes scrollPulse{0%,100%{opacity:.3;transform:scaleY(.6)}50%{opacity:1;transform:scaleY(1)}}
+
+section{padding:7rem 3rem}
+.section-tag{font-size:.65rem;letter-spacing:.4em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;display:block}
+.section-title{font-family:var(--font-display);font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:600;margin-bottom:1rem;line-height:1.3}
+.section-desc{color:var(--text-secondary);max-width:550px;font-weight:300;line-height:1.8;font-size:.95rem}
+
+.nosotros{background:var(--bg-secondary);position:relative;overflow:hidden}
+.nosotros::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold-dark),transparent)}
+.nosotros-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;max-width:1200px;margin:0 auto;align-items:center}
+.nosotros-text p{color:var(--text-secondary);margin-top:1.5rem;font-weight:300;line-height:1.9;font-size:.95rem}
+.team-cards{display:flex;flex-direction:column;gap:1.5rem}
+.team-card{background:var(--bg-card);border:1px solid var(--border);padding:0;position:relative;overflow:hidden;transition:all .4s;display:flex;align-items:stretch}
+.team-card::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%;background:var(--gold);transform:scaleY(0);transition:transform .4s;transform-origin:top;z-index:2}
+.team-card:hover::before{transform:scaleY(1)}
+.team-card:hover{border-color:rgba(200,164,90,.2);transform:translateX(5px)}
+.team-photo{width:140px;min-height:160px;object-fit:cover;flex-shrink:0}
+.team-info{padding:1.5rem 1.8rem;display:flex;flex-direction:column;justify-content:center}
+.team-role{font-size:.65rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-bottom:.5rem}
+.team-name{font-family:var(--font-display);font-size:1.2rem;font-weight:600;margin-bottom:.3rem}
+.team-title{color:var(--text-secondary);font-size:.82rem;font-weight:300}
+.team-cedula{color:var(--text-muted);font-size:.75rem;margin-top:.5rem}
+
+.servicios{max-width:1200px;margin:0 auto}
+.servicios-header{text-align:center;margin-bottom:4rem}
+.servicios-header .section-desc{margin:1rem auto 0}
+.servicios-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem}
+.servicio-card{background:var(--bg-card);border:1px solid var(--border);padding:2.5rem 2rem;position:relative;overflow:hidden;transition:all .4s;cursor:default}
+.servicio-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),var(--gold-dark));transform:scaleX(0);transition:transform .5s;transform-origin:left}
+.servicio-card:hover::after{transform:scaleX(1)}
+.servicio-card:hover{border-color:rgba(200,164,90,.15);transform:translateY(-4px)}
+.servicio-icon{font-size:2rem;margin-bottom:1.2rem;display:block}
+.servicio-card h3{font-family:var(--font-display);font-size:1.15rem;font-weight:600;margin-bottom:.8rem}
+.servicio-card p{color:var(--text-secondary);font-size:.85rem;font-weight:300;line-height:1.8}
+
+.proyectos{background:var(--bg-secondary);position:relative}
+.proyectos::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold-dark),transparent)}
+.proyectos-inner{max-width:1200px;margin:0 auto}
+.proyectos-header{text-align:center;margin-bottom:4rem}
+.proyectos-header .section-desc{margin:1rem auto 0}
+.proyecto-section{margin-bottom:4rem}
+.proyecto-section-title{font-family:var(--font-display);font-size:1.4rem;font-weight:600;margin-bottom:.5rem}
+.proyecto-section-desc{color:var(--text-secondary);font-size:.9rem;font-weight:300;margin-bottom:1.5rem}
+.proyecto-gallery{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+.proyecto-gallery.single{grid-template-columns:1fr;max-width:600px}
+.proyecto-img-wrap{position:relative;overflow:hidden;border:1px solid var(--border);transition:all .4s}
+.proyecto-img-wrap:hover{border-color:rgba(200,164,90,.3)}
+.proyecto-img-wrap img{width:100%;height:300px;object-fit:cover;display:block;transition:transform .6s}
+.proyecto-img-wrap:hover img{transform:scale(1.03)}
+.proyecto-label{position:absolute;top:12px;left:12px;background:rgba(10,10,10,.85);color:var(--gold);font-size:.65rem;letter-spacing:.25em;text-transform:uppercase;padding:.4rem 1rem;font-weight:600;backdrop-filter:blur(8px);border:1px solid rgba(200,164,90,.2)}
+
+.porque{max-width:1200px;margin:0 auto}
+.porque-header{text-align:center;margin-bottom:4rem}
+.porque-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem}
+.porque-item{text-align:center;padding:2rem 1.2rem}
+.porque-num{font-family:var(--font-display);font-size:2.5rem;font-weight:700;color:var(--gold);line-height:1}
+.porque-label{color:var(--text-secondary);font-size:.8rem;margin-top:.5rem;font-weight:300;letter-spacing:.05em}
+
+/* TESTIMONIOS CARRUSEL */
+.testimonios{background:var(--bg-secondary);position:relative}
+.testimonios::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold-dark),transparent)}
+.testimonios-inner{max-width:1200px;margin:0 auto}
+.testimonios-header{text-align:center;margin-bottom:3rem}
+.testimonios-header .section-desc{margin:1rem auto 0}
+
+.carousel-wrap{position:relative;overflow:hidden;margin-bottom:2.5rem;padding:0 10px}
+.carousel-track{display:flex;gap:20px;transition:transform .5s ease;cursor:grab}
+.carousel-track:active{cursor:grabbing}
+.testimonio-card{width:100%;min-width:100%;background:var(--bg-card);border:1px solid var(--border);padding:1.8rem;position:relative;flex-shrink:0;transition:all .4s}
+.testimonio-card:hover{border-color:rgba(200,164,90,.2)}
+.testimonio-stars{color:var(--gold);font-size:1rem;margin-bottom:.8rem;letter-spacing:2px}
+.testimonio-text{color:var(--text-secondary);font-size:.88rem;font-weight:300;line-height:1.8;font-style:italic;margin-bottom:1.2rem}
+.testimonio-author{display:flex;align-items:center;gap:.8rem}
+.testimonio-avatar{width:44px;height:44px;border-radius:50%;background:var(--bg-accent);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:.9rem;color:var(--gold);font-weight:600;flex-shrink:0}
+.testimonio-info h4{font-size:.85rem;font-weight:600}
+.testimonio-info span{color:var(--text-muted);font-size:.72rem;font-weight:300}
+.testimonio-date{color:var(--text-muted);font-size:.65rem;margin-top:.5rem}
+
+.carousel-nav{display:flex;justify-content:center;gap:1rem;margin-top:1.5rem;align-items:center}
+.carousel-btn{width:44px;height:44px;background:var(--bg-card);border:1px solid var(--border);color:var(--gold);font-size:1.4rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .3s;border-radius:50%}
+.carousel-btn:hover{background:rgba(200,164,90,.1);border-color:var(--gold)}
+.carousel-dots{display:flex;align-items:center;gap:6px}
+.carousel-dot{width:8px;height:8px;border-radius:50%;background:var(--border);transition:all .3s;cursor:pointer}
+.carousel-dot.active{background:var(--gold);width:24px;border-radius:4px}
+.carousel-counter{color:var(--text-muted);font-size:.75rem;letter-spacing:.1em}
+
+/* FORM TESTIMONIO */
+.testimonio-form-wrap{background:var(--bg-card);border:1px solid var(--border);padding:2rem;max-width:600px;margin:0 auto}
+.testimonio-form-title{font-family:var(--font-display);font-size:1.1rem;font-weight:600;margin-bottom:.3rem;text-align:center}
+.testimonio-form-desc{color:var(--text-secondary);font-size:.82rem;text-align:center;margin-bottom:1.2rem;font-weight:300}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem}
+.form-group{display:flex;flex-direction:column;gap:.4rem}
+.form-group.full{grid-column:1/-1}
+.form-group label{font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);font-weight:600}
+.form-group input,.form-group textarea{background:var(--bg-primary);border:1px solid var(--border);color:var(--text-primary);padding:.7rem .9rem;font-family:var(--font-body);font-size:.85rem;outline:none;transition:border-color .3s;resize:vertical}
+.form-group input:focus,.form-group textarea:focus{border-color:var(--gold)}
+.star-rating{display:flex;gap:4px;cursor:pointer;font-size:1.4rem;margin-bottom:1rem;justify-content:center}
+.star-rating span{color:var(--border);transition:color .2s;user-select:none}
+.star-rating span.active{color:var(--gold)}
+.form-submit{display:block;width:100%;background:var(--gold);color:var(--bg-primary);padding:.8rem;font-family:var(--font-body);font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;font-weight:700;border:none;cursor:pointer;transition:all .3s;margin-top:.8rem}
+.form-submit:hover{background:var(--gold-light)}
+.form-msg{text-align:center;color:var(--gold);font-size:.82rem;margin-top:.8rem;display:none}
+
+/* CONTACTO */
+.contacto{position:relative}
+.contacto::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold-dark),transparent)}
+.contacto-inner{max-width:1000px;margin:0 auto;text-align:center}
+.contacto-header{margin-bottom:3.5rem}
+.contacto-header .section-desc{margin:1rem auto 0}
+.contacto-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin-bottom:3rem}
+.contacto-item{padding:2rem;background:var(--bg-card);border:1px solid var(--border);transition:all .3s}
+.contacto-item:hover{border-color:rgba(200,164,90,.2)}
+.contacto-item .icon{font-size:1.5rem;margin-bottom:.8rem;display:block}
+.contacto-item h4{font-size:.85rem;font-weight:600;margin-bottom:.3rem}
+.contacto-item p{color:var(--text-secondary);font-size:.8rem;font-weight:300}
+.contacto-item a{color:var(--gold);text-decoration:none;font-size:.8rem;transition:color .3s}
+.contacto-item a:hover{color:var(--gold-light)}
+.fb-btn{display:inline-flex;align-items:center;gap:.8rem;padding:1rem 2.5rem;background:transparent;border:1px solid rgba(200,164,90,.3);color:var(--gold);text-decoration:none;font-size:.8rem;letter-spacing:.15em;text-transform:uppercase;font-weight:600;font-family:var(--font-body);transition:all .35s}
+.fb-btn:hover{background:rgba(200,164,90,.08);border-color:var(--gold);transform:translateY(-2px)}
+.fb-btn svg{width:18px;height:18px;fill:var(--gold)}
+
+/* WHATSAPP */
+.whatsapp-float{position:fixed;bottom:25px;right:25px;width:60px;height:60px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,.4);z-index:9999;transition:all .3s;text-decoration:none}
+.whatsapp-float:hover{transform:scale(1.1);box-shadow:0 6px 30px rgba(37,211,102,.6)}
+.whatsapp-float::before{content:'';position:absolute;width:70px;height:70px;border-radius:50%;background:rgba(37,211,102,.3);animation:whatsappPulse 2s ease infinite}
+@keyframes whatsappPulse{0%{transform:scale(1);opacity:.6}100%{transform:scale(1.4);opacity:0}}
+.whatsapp-tooltip{position:absolute;right:72px;background:#161616;color:var(--gold);padding:.5rem 1rem;border-radius:4px;font-size:.75rem;font-weight:600;letter-spacing:.1em;white-space:nowrap;opacity:0;transform:translateX(10px);transition:all .3s;pointer-events:none;border:1px solid rgba(200,164,90,.2)}
+.whatsapp-float:hover .whatsapp-tooltip{opacity:1;transform:translateX(0)}
+
+/* PROMO BANNER */
+.promo-banner{position:fixed;top:80px;left:50%;transform:translateX(-50%);z-index:998;background:linear-gradient(135deg,#1a1200,#2a1f00);border:1px solid var(--gold);padding:.7rem 2rem .7rem 1.5rem;display:flex;align-items:center;gap:1rem;box-shadow:0 8px 30px rgba(200,164,90,.2);animation:promoSlide .6s ease .5s both;max-width:90vw}
+@keyframes promoSlide{from{opacity:0;transform:translateX(-50%) translateY(-20px)}to{opacity:1;transform:translateX(-50%) translateY(0)}}
+.promo-icon{font-size:1.5rem}
+.promo-text{font-size:.8rem;color:var(--text-primary);font-weight:500}
+.promo-text strong{color:var(--gold);font-size:1.1rem;font-weight:700}
+.promo-close{background:none;border:none;color:var(--text-muted);font-size:1.2rem;cursor:pointer;padding:0 0 0 1rem;transition:color .3s;line-height:1}
+.promo-close:hover{color:var(--text-primary)}
+
+footer{padding:2.5rem 3rem;text-align:center;border-top:1px solid var(--border)}
+footer p{color:var(--text-muted);font-size:.75rem;letter-spacing:.1em}
+footer .footer-logo{font-family:var(--font-display);color:var(--gold-dark);font-size:1rem;margin-bottom:.5rem}
+
+@keyframes fadeInUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+.reveal{opacity:0;transform:translateY(40px);transition:all .8s cubic-bezier(.16,1,.3,1)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+@media(max-width:968px){
+  nav{padding:1rem 1.5rem}
+  .nav-links{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(10,10,10,.98);flex-direction:column;align-items:center;justify-content:center;gap:2.5rem}
+  .nav-links.active{display:flex}
+  .nav-toggle{display:flex}
+  section{padding:5rem 1.5rem}
+  .nosotros-grid{grid-template-columns:1fr;gap:3rem}
+  .servicios-grid{grid-template-columns:1fr 1fr}
+  .proyecto-gallery{grid-template-columns:1fr}
+  .porque-grid{grid-template-columns:repeat(2,1fr)}
+  .contacto-grid{grid-template-columns:1fr}
+  .team-photo{width:120px;min-height:140px}
+  .testimonio-card{min-width:100%;width:100%}
+  .form-row{grid-template-columns:1fr}
+}
+@media(max-width:600px){
+  .servicios-grid{grid-template-columns:1fr}
+  .hero h1{font-size:2.2rem}
+  .porque-grid{grid-template-columns:1fr 1fr}
+  .team-card{flex-direction:column}
+  .team-photo{width:100%;height:200px}
+  .whatsapp-float{bottom:15px;right:15px;width:55px;height:55px}
+  .whatsapp-tooltip{display:none}
+  .promo-banner{top:70px;padding:.6rem 1.2rem;gap:.6rem}
+  .promo-text{font-size:.7rem}
+  .promo-text strong{font-size:.9rem}
+  .testimonio-card{min-width:100%;width:100%}
+}
+</style>
+</head>
+<body>
+
+<!-- PROMO BANNER -->
+<div class="promo-banner" id="promoBanner">
+  <span class="promo-icon">🏷️</span>
+  <div class="promo-text">¡Por tiempo limitado! <strong>10% de descuento</strong> en todos nuestros servicios</div>
+  <button class="promo-close" onclick="document.getElementById('promoBanner').style.display='none'">✕</button>
+</div>
+
+<nav id="navbar">
+  <a href="#inicio" class="nav-logo">V&C<span>Ingeniería & Arquitectura</span></a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#inicio" onclick="closeNav()">Inicio</a></li>
+    <li><a href="#nosotros" onclick="closeNav()">Nosotros</a></li>
+    <li><a href="#servicios" onclick="closeNav()">Servicios</a></li>
+    <li><a href="#proyectos" onclick="closeNav()">Proyectos</a></li>
+    <li><a href="#testimonios" onclick="closeNav()">Testimonios</a></li>
+    <li><a href="#contacto" onclick="closeNav()">Contacto</a></li>
+  </ul>
+  <div class="nav-toggle" id="navToggle" onclick="toggleNav()"><span></span><span></span><span></span></div>
+</nav>
+
+<section class="hero" id="inicio">
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-badge">Cd. Victoria, Tamaulipas</div>
+    <h1><span class="accent">Villarreal</span> <span class="ampersand">&</span> <span class="accent">Castillo</span><br>Ingeniería Civil & Arquitectura</h1>
+    <p class="hero-sub">Soluciones integrales en construcción, diseño arquitectónico y obra civil. Compromiso, calidad y cumplimiento en cada proyecto.</p>
+    <div class="hero-cta">
+      <a href="#contacto" class="btn btn-gold">Contáctanos</a>
+      <a href="#proyectos" class="btn btn-outline">Ver Proyectos</a>
+    </div>
+  </div>
+  <div class="hero-scroll"><span>Scroll</span><div class="scroll-line"></div></div>
+</section>
+
+<section class="nosotros" id="nosotros">
+  <div class="nosotros-grid">
+    <div class="nosotros-text reveal">
+      <span class="section-tag">Quiénes somos</span>
+      <h2 class="section-title">Dos disciplinas,<br>una visión</h2>
+      <p>Somos un equipo multidisciplinario conformado por un Ingeniero Civil y un Arquitecto, unidos por la convicción de que los mejores resultados surgen cuando el diseño y la ingeniería trabajan de la mano desde el primer trazo.</p>
+      <p>Ofrecemos un servicio integral: desde el proyecto arquitectónico y el cálculo estructural, hasta la ejecución y supervisión de obra. Nuestro compromiso es entregar trabajos de calidad, en tiempo y con apego a la normatividad vigente.</p>
+    </div>
+    <div class="team-cards reveal">
+      <div class="team-card">
+        <img src="eduardo.jpg" alt="Ing. Eduardo Villarreal Carvajal" class="team-photo">
+        <div class="team-info">
+          <div class="team-role">Ingeniería Civil</div>
+          <div class="team-name">Ing. Eduardo Villarreal Carvajal</div>
+          <div class="team-title">Cálculo estructural, ejecución y supervisión de obra civil</div>
+          <div class="team-cedula">Cédula Profesional: 15382053</div>
+        </div>
+      </div>
+      <div class="team-card">
+        <img src="eric.jpg" alt="Arq. Eric Castillo Viscaino" class="team-photo">
+        <div class="team-info">
+          <div class="team-role">Arquitectura</div>
+          <div class="team-name">Arq. Eric Castillo Viscaino</div>
+          <div class="team-title">Diseño arquitectónico, proyecto ejecutivo, visualización 3D y planeación</div>
+          <div class="team-cedula">Cédula Profesional: [Número]</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="servicios" id="servicios">
+  <div class="servicios-header reveal">
+    <span class="section-tag">Lo que hacemos</span>
+    <h2 class="section-title">Nuestros Servicios</h2>
+    <p class="section-desc">Soluciones completas para proyectos de construcción a nivel municipal y estatal.</p>
+  </div>
+  <div class="servicios-grid">
+    <div class="servicio-card reveal"><span class="servicio-icon">&#9638;</span><h3>Urbanización</h3><p>Construcción y rehabilitación de calles, banquetas, guarniciones, pavimentación y obras de infraestructura urbana.</p></div>
+    <div class="servicio-card reveal"><span class="servicio-icon">&#9720;</span><h3>Edificación</h3><p>Construcción de vivienda, escuelas, edificios públicos, clínicas y toda clase de infraestructura vertical.</p></div>
+    <div class="servicio-card reveal"><span class="servicio-icon">&#9881;</span><h3>Rehabilitación y Mantenimiento</h3><p>Conservación, reparación y mejoramiento de inmuebles e infraestructura existente.</p></div>
+    <div class="servicio-card reveal"><span class="servicio-icon">&#9997;</span><h3>Proyecto Arquitectónico</h3><p>Diseño arquitectónico, planos ejecutivos, renders 3D y documentación técnica completa.</p></div>
+    <div class="servicio-card reveal"><span class="servicio-icon">&#9878;</span><h3>Cálculo Estructural</h3><p>Análisis y diseño estructural con apego a las normas vigentes para garantizar seguridad y estabilidad.</p></div>
+    <div class="servicio-card reveal"><span class="servicio-icon">&#9872;</span><h3>Supervisión de Obra</h3><p>Control de calidad, seguimiento de avances y verificación de especificaciones técnicas.</p></div>
+  </div>
+</section>
+
+<section class="proyectos" id="proyectos">
+  <div class="proyectos-inner">
+    <div class="proyectos-header reveal">
+      <span class="section-tag">Nuestro trabajo</span>
+      <h2 class="section-title">Proyectos Realizados</h2>
+      <p class="section-desc">Una muestra de los trabajos que hemos ejecutado en la región.</p>
+    </div>
+    <div class="proyecto-section reveal">
+      <div class="proyecto-section-title">Residencia Contemporánea</div>
+      <div class="proyecto-section-desc">Construcción de residencia con diseño contemporáneo, acabados en piedra natural, estructura metálica en marquesina y cancelería de aluminio.</div>
+      <div class="proyecto-gallery">
+        <div class="proyecto-img-wrap"><img src="residencia_antes.jpg" alt="Residencia en construcción"><div class="proyecto-label">En Construcción</div></div>
+        <div class="proyecto-img-wrap"><img src="residencia_despues.jpg" alt="Residencia terminada"><div class="proyecto-label">Avance de Obra</div></div>
+      </div>
+    </div>
+    <div class="proyecto-section reveal">
+      <div class="proyecto-section-title">Remodelación Integral de Fachada</div>
+      <div class="proyecto-section-desc">Transformación completa de vivienda: ampliación de segundo nivel, fachada contemporánea con volumen en voladizo, acabados en piedra, iluminación arquitectónica y ventanería de aluminio.</div>
+      <div class="proyecto-gallery">
+        <div class="proyecto-img-wrap"><img src="fachada_antes.jpg" alt="Fachada antes"><div class="proyecto-label">Antes</div></div>
+        <div class="proyecto-img-wrap"><img src="fachada_despues.jpg" alt="Fachada después"><div class="proyecto-label">Después</div></div>
+      </div>
+    </div>
+    <div class="proyecto-section reveal">
+      <div class="proyecto-section-title">Diseño de Interiores</div>
+      <div class="proyecto-section-desc">Muro de entretenimiento con acabado en piedra texturizada, panel de madera ranurada, iluminación indirecta LED y mueble flotante de diseño.</div>
+      <div class="proyecto-gallery single">
+        <div class="proyecto-img-wrap"><img src="interiores.jpg" alt="Diseño de interiores"><div class="proyecto-label">Interiores</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="porque">
+  <div class="porque-header reveal"><span class="section-tag">Nuestro compromiso</span><h2 class="section-title">¿Por qué elegirnos?</h2></div>
+  <div class="porque-grid">
+    <div class="porque-item reveal"><div class="porque-num">2</div><div class="porque-label">Profesionistas<br>especializados</div></div>
+    <div class="porque-item reveal"><div class="porque-num">100%</div><div class="porque-label">Servicio<br>integral</div></div>
+    <div class="porque-item reveal"><div class="porque-num">✓</div><div class="porque-label">Cumplimiento<br>normativo</div></div>
+    <div class="porque-item reveal"><div class="porque-num">✓</div><div class="porque-label">Calidad y<br>puntualidad</div></div>
+  </div>
+</section>
+
+<!-- TESTIMONIOS -->
+<section class="testimonios" id="testimonios">
+  <div class="testimonios-inner">
+    <div class="testimonios-header reveal">
+      <span class="section-tag">Lo que dicen nuestros clientes</span>
+      <h2 class="section-title">Testimonios</h2>
+      <p class="section-desc">La satisfacción de nuestros clientes es nuestra mejor carta de presentación.</p>
+    </div>
+
+    <div class="carousel-wrap reveal">
+      <div class="carousel-track" id="carouselTrack">
+
+        <div class="testimonio-card">
+          <div class="testimonio-stars">★★★★★</div>
+          <div class="testimonio-text">"Les pedí que me remodelaran toda la fachada de mi casa y la verdad quedé muy contento con el resultado. Siempre estuvieron al pendiente y me iban explicando cada paso. Se los recomiendo."</div>
+          <div class="testimonio-author"><div class="testimonio-avatar">MR</div><div class="testimonio-info"><h4>Miguel Ramírez</h4><span>Remodelación de fachada</span></div></div>
+          <div class="testimonio-date">Marzo 2026</div>
+        </div>
+
+        <div class="testimonio-card">
+          <div class="testimonio-stars">★★★★★</div>
+          <div class="testimonio-text">"Nos construyeron la casa desde cero. Lo que más nos gustó es que el arquitecto nos hizo el diseño justo como lo queríamos y el ingeniero se encargó de que todo quedara bien hecho. Muy contentos."</div>
+          <div class="testimonio-author"><div class="testimonio-avatar">SL</div><div class="testimonio-info"><h4>Sandra López</h4><span>Construcción de vivienda</span></div></div>
+          <div class="testimonio-date">Febrero 2026</div>
+        </div>
+
+        <div class="testimonio-card">
+          <div class="testimonio-stars">★★★★★</div>
+          <div class="testimonio-text">"Quería ampliar mi casa y agregar un segundo piso. Me dieron un presupuesto justo, cumplieron con los tiempos y el acabado quedó muy bien. Ya los recomendé con mis vecinos."</div>
+          <div class="testimonio-author"><div class="testimonio-avatar">JT</div><div class="testimonio-info"><h4>Juan Torres</h4><span>Ampliación 2do piso</span></div></div>
+          <div class="testimonio-date">Enero 2026</div>
+        </div>
+
+        <div class="testimonio-card">
+          <div class="testimonio-stars">★★★★★</div>
+          <div class="testimonio-text">"Me hicieron el diseño interior de mi sala y comedor. El muro de la tele con piedra e iluminación quedó increíble. Todos los que vienen a la casa preguntan quién lo hizo. Muy profesionales."</div>
+          <div class="testimonio-author"><div class="testimonio-avatar">KC</div><div class="testimonio-info"><h4>Karen Cantú</h4><span>Diseño de interiores</span></div></div>
+          <div class="testimonio-date">Diciembre 2025</div>
+        </div>
+
+        <div class="testimonio-card">
+          <div class="testimonio-stars">★★★★★</div>
+          <div class="testimonio-text">"Contraté a V&C para remodelar mi local comercial. Trabajaron rápido, sin tanto desorden, y el resultado fue justo lo que necesitaba. El precio fue razonable comparado con otras cotizaciones que pedí."</div>
+          <div class="testimonio-author"><div class="testimonio-avatar">RP</div><div class="testimonio-info"><h4>Roberto Peña</h4><span>Remodelación comercial</span></div></div>
+          <div class="testimonio-date">Noviembre 2025</div>
+        </div>
+
+        <div class="testimonio-card">
+          <div class="testimonio-stars">★★★★★</div>
+          <div class="testimonio-text">"Lo que más valoro es la honestidad. Me dijeron exactamente cuánto iba a costar, cuánto tiempo se iban a tardar, y cumplieron. Nada de sorpresas. Así da gusto trabajar con alguien."</div>
+          <div class="testimonio-author"><div class="testimonio-avatar">LG</div><div class="testimonio-info"><h4>Lupita García</h4><span>Rehabilitación de vivienda</span></div></div>
+          <div class="testimonio-date">Octubre 2025</div>
+        </div>
+
+        <div class="testimonio-card">
+          <div class="testimonio-stars">★★★★★</div>
+          <div class="testimonio-text">"Nos hicieron las banquetas y guarniciones de toda la calle donde vivo. Quedaron derechitas y bien hechas. Se nota que saben lo que hacen porque otros contratistas habían dejado el trabajo a medias antes."</div>
+          <div class="testimonio-author"><div class="testimonio-avatar">FH</div><div class="testimonio-info"><h4>Fernando Hernández</h4><span>Urbanización</span></div></div>
+          <div class="testimonio-date">Septiembre 2025</div>
+        </div>
+
+        <div class="testimonio-card">
+          <div class="testimonio-stars">★★★★★</div>
+          <div class="testimonio-text">"Mi esposa y yo queríamos darle un cambio total a la fachada de la casa. Nos mostraron el diseño en 3D antes de empezar y el resultado fue igualito. Quedamos encantados, se ve otra casa."</div>
+          <div class="testimonio-author"><div class="testimonio-avatar">DM</div><div class="testimonio-info"><h4>Daniel Martínez</h4><span>Remodelación de fachada</span></div></div>
+          <div class="testimonio-date">Agosto 2025</div>
+        </div>
+
+        <div class="testimonio-card">
+          <div class="testimonio-stars">★★★★☆</div>
+          <div class="testimonio-text">"Buen trabajo en general. La obra tardó un poquito más de lo planeado por la lluvia pero al final el acabado quedó muy bien. El ingeniero siempre estuvo presente supervisando."</div>
+          <div class="testimonio-author"><div class="testimonio-avatar">AC</div><div class="testimonio-info"><h4>Adriana Castañeda</h4><span>Construcción de barda</span></div></div>
+          <div class="testimonio-date">Julio 2025</div>
+        </div>
+
+        <div class="testimonio-card">
+          <div class="testimonio-stars">★★★★★</div>
+          <div class="testimonio-text">"Tenía un terreno y no sabía ni por dónde empezar. Ellos me ayudaron con todo: planos, permisos, construcción. La casa ya está lista y la familia feliz. Gracias Eduardo y Eric."</div>
+          <div class="testimonio-author"><div class="testimonio-avatar">PM</div><div class="testimonio-info"><h4>Patricia Morales</h4><span>Casa habitación completa</span></div></div>
+          <div class="testimonio-date">Junio 2025</div>
+        </div>
+
+      </div>
+      <div class="carousel-nav">
+        <button class="carousel-btn" onclick="moveCarousel(-1)">&#8249;</button>
+        <div class="carousel-dots" id="carouselDots"></div>
+        <button class="carousel-btn" onclick="moveCarousel(1)">&#8250;</button>
+      </div>
+    </div>
+
+    <!-- FORMULARIO -->
+    <div class="testimonio-form-wrap reveal">
+      <div class="testimonio-form-title">¿Ya trabajamos contigo? Déjanos tu opinión</div>
+      <div class="testimonio-form-desc">Tu experiencia nos ayuda a seguir creciendo</div>
+      <div class="star-rating" id="starRating">
+        <span onclick="setStars(1)">★</span>
+        <span onclick="setStars(2)">★</span>
+        <span onclick="setStars(3)">★</span>
+        <span onclick="setStars(4)">★</span>
+        <span onclick="setStars(5)">★</span>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label>Nombre</label><input type="text" id="tNombre" placeholder="Tu nombre"></div>
+        <div class="form-group"><label>Tipo de proyecto</label><input type="text" id="tProyecto" placeholder="Ej: Remodelación, Casa nueva..."></div>
+      </div>
+      <div class="form-group full" style="margin-bottom:0">
+        <label>Tu experiencia</label>
+        <textarea id="tComentario" rows="3" placeholder="Cuéntanos cómo te fue con nosotros..."></textarea>
+      </div>
+      <button class="form-submit" onclick="enviarTestimonio()">Enviar testimonio</button>
+      <div class="form-msg" id="formMsg">¡Gracias por tu opinión! La publicaremos pronto.</div>
+    </div>
+  </div>
+</section>
+
+<section class="contacto" id="contacto">
+  <div class="contacto-inner">
+    <div class="contacto-header reveal">
+      <span class="section-tag">Hablemos</span>
+      <h2 class="section-title">Contacto</h2>
+      <p class="section-desc">¿Tiene un proyecto en mente? Estamos listos para ayudarle a hacerlo realidad.</p>
+    </div>
+    <div class="contacto-grid">
+      <div class="contacto-item reveal"><span class="icon">&#9742;</span><h4>Teléfono</h4><p>834 852 4169</p></div>
+      <div class="contacto-item reveal"><span class="icon">&#9993;</span><h4>Correo</h4><p><a href="mailto:evcconstrucciones2023@gmail.com">evcconstrucciones2023@gmail.com</a></p></div>
+      <div class="contacto-item reveal"><span class="icon">&#9873;</span><h4>Ubicación</h4><p>Cd. Victoria, Tamaulipas</p></div>
+    </div>
+    <a href="https://www.facebook.com/EricCastilloArquitectura" target="_blank" class="fb-btn reveal">
+      <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+      Eric Castillo / Arquitectura
+    </a>
+  </div>
+</section>
+
+<a href="https://wa.me/528348524169?text=Hola%2C%20me%20interesa%20el%2010%25%20de%20descuento%20en%20sus%20servicios%20de%20construcci%C3%B3n.%20%C2%BFPodr%C3%ADan%20darme%20m%C3%A1s%20informaci%C3%B3n%3F" class="whatsapp-float" target="_blank" title="Escríbenos por WhatsApp">
+  <svg viewBox="0 0 32 32" fill="white" width="28" height="28"><path d="M16.004 0C7.164 0 .004 7.16.004 16c0 2.82.736 5.58 2.14 8.012L.004 32l8.188-2.088A15.92 15.92 0 0 0 16.004 32C24.844 32 32 24.84 32 16S24.844 0 16.004 0zm0 29.18a13.14 13.14 0 0 1-6.716-1.84l-.48-.288-4.988 1.272 1.332-4.868-.312-.5A13.12 13.12 0 0 1 2.824 16c0-7.272 5.92-13.18 13.18-13.18S29.18 8.728 29.18 16s-5.904 13.18-13.176 13.18zm7.228-9.868c-.396-.2-2.344-1.156-2.708-1.288-.364-.132-.628-.2-.892.2s-1.024 1.288-1.256 1.552c-.232.264-.46.296-.856.1-.396-.2-1.672-.616-3.184-1.964-1.176-1.048-1.972-2.344-2.204-2.74-.232-.396-.024-.608.176-.808.18-.18.396-.464.596-.696.2-.232.264-.396.396-.66.132-.264.068-.496-.032-.696-.1-.2-.892-2.148-1.22-2.94-.32-.772-.648-.668-.892-.68-.232-.012-.496-.016-.76-.016s-.696.1-1.06.496c-.364.396-1.392 1.36-1.392 3.316s1.424 3.848 1.624 4.112c.2.264 2.804 4.28 6.792 6.004.948.412 1.688.656 2.264.84.952.3 1.82.26 2.504.156.764-.112 2.344-.96 2.676-1.884.332-.924.332-1.716.232-1.884-.1-.164-.364-.264-.76-.46z"/></svg>
+  <span class="whatsapp-tooltip">¡Escríbenos!</span>
+</a>
+
+<footer>
+  <div class="footer-logo">V&C</div>
+  <p>&copy; 2026 Villarreal & Castillo — Ingeniería Civil & Arquitectura — Cd. Victoria, Tamaulipas</p>
+</footer>
+
+<script>
+window.addEventListener('scroll',()=>{document.getElementById('navbar').classList.toggle('scrolled',window.scrollY>50)});
+function toggleNav(){document.getElementById('navLinks').classList.toggle('active')}
+function closeNav(){document.getElementById('navLinks').classList.remove('active')}
+const obs=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}})},{threshold:.15,rootMargin:'0px 0px -50px 0px'});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+// Carousel - one card at a time
+let cIdx=0;
+const track=document.getElementById('carouselTrack');
+const cards=track.querySelectorAll('.testimonio-card');
+const totalCards=cards.length;
+const dotsWrap=document.getElementById('carouselDots');
+
+function buildDots(){
+  dotsWrap.innerHTML='';
+  for(let i=0;i<totalCards;i++){
+    const d=document.createElement('div');
+    d.className='carousel-dot'+(i===cIdx?' active':'');
+    d.onclick=()=>{cIdx=i;updateCarousel()};
+    dotsWrap.appendChild(d);
+  }
+}
+function updateCarousel(){
+  const wrapW=track.parentElement.offsetWidth;
+  const gap=20;
+  cards.forEach(c=>{c.style.minWidth=wrapW+'px';c.style.width=wrapW+'px'});
+  track.style.transform='translateX(-'+(cIdx*(wrapW+gap))+'px)';
+  buildDots();
+}
+function moveCarousel(dir){
+  cIdx=cIdx+dir;
+  if(cIdx<0) cIdx=totalCards-1;
+  if(cIdx>=totalCards) cIdx=0;
+  updateCarousel();
+}
+window.addEventListener('resize',()=>{updateCarousel()});
+setTimeout(()=>{updateCarousel()},100);
+
+// Auto-play
+setInterval(()=>{cIdx=(cIdx+1)%totalCards;updateCarousel()},5000);
+
+// Touch swipe
+let touchX=0;
+track.addEventListener('touchstart',e=>{touchX=e.touches[0].clientX},{passive:true});
+track.addEventListener('touchend',e=>{const diff=touchX-e.changedTouches[0].clientX;if(Math.abs(diff)>40){diff>0?moveCarousel(1):moveCarousel(-1)}},{passive:true});
+
+// Stars
+let selectedStars=0;
+function setStars(n){
+  selectedStars=n;
+  document.querySelectorAll('#starRating span').forEach((s,i)=>s.classList.toggle('active',i<n));
+}
+
+// Submit
+function enviarTestimonio(){
+  const nombre=document.getElementById('tNombre').value.trim();
+  const proyecto=document.getElementById('tProyecto').value.trim();
+  const comentario=document.getElementById('tComentario').value.trim();
+  if(!nombre||!comentario||!selectedStars){alert('Por favor completa todos los campos y selecciona las estrellas.');return;}
+  const initials=nombre.split(' ').map(w=>w[0]).join('').substring(0,2).toUpperCase();
+  const stars='★'.repeat(selectedStars)+'☆'.repeat(5-selectedStars);
+  const months=['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+  const now=new Date();
+  const dateStr=months[now.getMonth()]+' '+now.getFullYear();
+  const card=document.createElement('div');
+  card.className='testimonio-card';
+  card.innerHTML=`<div class="testimonio-stars">${stars}</div><div class="testimonio-text">"${comentario}"</div><div class="testimonio-author"><div class="testimonio-avatar">${initials}</div><div class="testimonio-info"><h4>${nombre}</h4><span>${proyecto||'Cliente'}</span></div></div><div class="testimonio-date">${dateStr}</div>`;
+  track.prepend(card);
+  document.getElementById('tNombre').value='';
+  document.getElementById('tProyecto').value='';
+  document.getElementById('tComentario').value='';
+  selectedStars=0;
+  document.querySelectorAll('#starRating span').forEach(s=>s.classList.remove('active'));
+  document.getElementById('formMsg').style.display='block';
+  setTimeout(()=>{document.getElementById('formMsg').style.display='none'},4000);
+  cIdx=0;
+  updateCarousel();
+}
+</script>
+</body>
+</html>
